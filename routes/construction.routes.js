@@ -6,9 +6,12 @@ const Construction = require("../models/Construction.model");
 
 router.get("/", async (req, res, next) => {
   try {
-    // I dont want to show id in the console (en el futuro, seleccionar solo los datos que quiero mostrar aca)
-    let projects = await Construction.find({}).select("-_id");
-    console.log("Found Construction projects:", projects);
+    let projects = await Construction.find({}).select({
+      project: 1,
+      description: 1,
+      images: { $slice: 1 }, // only first image
+      _id: 0, //no id included
+    });
 
     if (projects.length === 0) {
       console.log("No construction projects found.");
