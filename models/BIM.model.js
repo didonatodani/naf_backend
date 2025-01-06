@@ -1,6 +1,6 @@
 const { Schema, model } = require("mongoose");
 
-const bimProjectSchema = new Schema(
+const bimSchema = new Schema(
   {
     project: {
       type: String,
@@ -18,7 +18,6 @@ const bimProjectSchema = new Schema(
     },
     images: {
       type: [String],
-      // change for cloudinary settings
     },
   },
   {
@@ -26,5 +25,5 @@ const bimProjectSchema = new Schema(
   }
 );
 
-const BIMProject = model("BIMProject", bimProjectSchema);
-module.exports = BIMProject;
+const BIM = model("BIM", bimSchema);
+module.exports = BIM;

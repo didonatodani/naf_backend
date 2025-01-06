@@ -1,6 +1,6 @@
 const { Schema, model } = require("mongoose");
 
-const constructionProjectSchema = new Schema(
+const constructionSchema = new Schema(
   {
     contractor: {
       type: String,
@@ -17,12 +17,15 @@ const constructionProjectSchema = new Schema(
     year: {
       type: String,
     },
+    images: {
+      type: [String],
+    },
   },
   {
     timestamps: true,
   }
 );
 
-const ConstructionProject = model("ConstructionProject", constructionProjectSchema);
+const Construction = model("Construction", constructionSchema);
 
-module.exports = ConstructionProject;
+module.exports = Construction;

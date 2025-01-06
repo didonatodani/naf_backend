@@ -1,7 +1,10 @@
 const { Schema, model } = require("mongoose");
 
-const woodProjectSchema = new Schema(
+const woodSchema = new Schema(
   {
+    project: {
+      type: String,
+    },
     location: {
       type: String,
       required: [true, "Project location is required"],
@@ -35,6 +38,6 @@ const woodProjectSchema = new Schema(
   }
 );
 
-const WoodProject = model("WoodProject", woodProjectSchema);
+const Wood = model("Wood", woodSchema);
 
-module.exports = WoodProject;
+module.exports = Wood;
