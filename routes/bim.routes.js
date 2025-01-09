@@ -10,7 +10,6 @@ router.get("/", async (req, res, next) => {
       project: 1,
       description: 1,
       images: { $slice: 1 }, // only first image
-      _id: 0, //no id included
     });
 
     if (projects.length === 0) {

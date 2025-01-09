@@ -10,7 +10,6 @@ router.get("/", async (req, res, next) => {
       project: 1,
       description: 1,
       images: { $slice: 1 }, // only first image
-      _id: 0, //no id included
     });
 
     if (projects.length === 0) {
@@ -29,7 +28,6 @@ router.get("/", async (req, res, next) => {
 // Get 1 construction project
 router.get("/:constructionId", async (req, res, next) => {
   const { constructionId } = req.params;
-
   try {
     //(en el futuro, seleccionar solo los datos que quiero mostrar aca)
     const response = await Construction.findById(constructionId);
