@@ -14,6 +14,9 @@ app.use("/api", indexRoutes);
 const authRoutes = require("./routes/auth.routes");
 app.use("/auth", authRoutes);
 
+const contactRoutes = require("./routes/contact.routes")
+app.use("/contact", contactRoutes)
+
 // Projects Routes
 const constructionRoutes = require("./routes/construction.routes");
 app.use("/construction", constructionRoutes);

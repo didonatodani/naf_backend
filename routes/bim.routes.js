@@ -1,4 +1,5 @@
 // REMEMBER TO HANDLE INFORMATION LEAKING!
+//POST, PUT AND DELETE REQUESTS MISSING!
 
 const express = require("express");
 const router = express.Router();

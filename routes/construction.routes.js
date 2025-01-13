@@ -1,8 +1,11 @@
 // REMEMBER TO HANDLE INFORMATION LEAKING!
+//POST, PUT AND DELETE REQUESTS MISSING!
 
 const express = require("express");
 const router = express.Router();
 const Construction = require("../models/Construction.model");
+
+// GET ALL PROJECTS:
 
 router.get("/", async (req, res, next) => {
   try {
@@ -25,7 +28,8 @@ router.get("/", async (req, res, next) => {
   }
 });
 
-// Get 1 construction project
+// GET 1 PROJECT:
+
 router.get("/:constructionId", async (req, res, next) => {
   const { constructionId } = req.params;
   try {
