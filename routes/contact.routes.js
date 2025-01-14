@@ -6,24 +6,27 @@ require("dotenv").config();
 
 const Contact = require("../models/Contact.model");
 
-// NODEMAILER: ACTIVATE LATER
-
+// NODEMAILER SETTINGS:
 const transporter = nodemailer.createTransport({
-    host: "smtp.office365.com", // Outlook SMTP server
-    port: 587,                 // Secure SMTP port
-    secure: false,             // Use TLS
-    auth: {
-      user: process.env.EMAIL_ADDRESS, // Your Outlook email address
-      pass: process.env.EMAIL_PASSWORD, // Your Outlook email password
-    },
-  });
+  host: "smtp.office365.com", // Outlook SMTP server
+  port: 587, // Secure SMTP port
+  secure: false, // Use TLS
+  auth: {
+    user: process.env.EMAIL_ADDRESS, // Our Outlook email address
+    pass: process.env.EMAIL_PASSWORD, // Our email password
+  },
+});
 
 async function sendEmail(contactData) {
   const mailOptions = {
+    // From us to us:
     from: process.env.EMAIL_ADDRESS,
     to: process.env.EMAIL_ADDRESS,
     subject: `New contact form message from ${contactData.fullName}`,
-    text: `Message: ${contactData.message}. Sender's email: ${contactData.email} . Sender's phone: ${contactData.phoneNumber}`,
+    text: `Sender: ${contactData.fullName},
+    Email: ${contactData.email} ,
+    Phone: ${contactData.phoneNumber} ,
+    Message: ${contactData.message}.`,
   };
   try {
     await transporter.sendMail(mailOptions);
@@ -48,8 +51,7 @@ router.post("/", async (req, res, next) => {
 
   try {
     const response = await Contact.create(newContact);
-    await sendEmail(newContact); // activate when Nodemailer is functional
-
+    await sendEmail(newContact);
     res.status(201).json({
       message: "Message received and email sent successfully",
       data: response,
