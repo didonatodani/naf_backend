@@ -13,7 +13,7 @@ const cookieParser = require("cookie-parser");
 // unless the request is made from the same domain, by default express wont accept POST requests
 const cors = require("cors");
 
-const FRONTEND_URL = process.env.ORIGIN;
+const FRONTEND_URL = process.env.ORIGIN || "http://localhost:3000";
 
 // Middleware configuration
 module.exports = (app) => {
@@ -23,8 +23,9 @@ module.exports = (app) => {
 
   app.use(
     cors({
-      origin: [FRONTEND_URL, "http://localhost:3000"], // Allow both the deployed frontend and localhost
-      credentials: true, // Enable credentials if needed
+      origin: [FRONTEND_URL, "https://naf-front.vercel.app"],  // Add both localhost and deployed URL
+      methods: ["GET", "POST", "PUT", "DELETE"],
+      credentials: true, // if you're using cookies for authentication
     })
   );
 
